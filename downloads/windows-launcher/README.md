@@ -1,48 +1,12 @@
-# Windows Launcher Download (Split Archive)
+# Browser-First Release
 
-GitHub blocks single files over 100MB in regular repositories, so the launcher zip is split into two parts.
+We are currently shipping the browser version and pausing launcher distribution for now.
 
-## How to use
-1. Download both `.part001` and `.part002` files into the same folder.
-2. Run `rebuild-zip.bat` in that same folder.
-3. Extract `ItsABoardGame-Launcher-Windows-Preview.zip`.
-4. Run `ItsABoardGameLauncher.exe`.
+## Play now
 
-## One-link website install
-If you want one link on your website, use this file:
-- `ItsABoardGameLauncher-Setup-0.1.0.exe` (recommended)
+- Live URL: https://shadowstrider05.github.io/ItsABoardGame/
 
-Direct link:
-- `https://raw.githubusercontent.com/ShadowStrider05/ItsABoardGame/main/downloads/windows-launcher/ItsABoardGameLauncher-Setup-0.1.0.exe`
+## Launcher status
 
-Why this is the default:
-- One click install experience.
-- No PowerShell execution-policy issues.
-- Installs directly like a normal game launcher.
-
-Fallback installer bundle link:
-- `https://raw.githubusercontent.com/ShadowStrider05/ItsABoardGame/main/downloads/windows-launcher/ItsABoardGame-Launcher-Installer.zip`
-
-PowerShell fallback link:
-- `https://raw.githubusercontent.com/ShadowStrider05/ItsABoardGame/main/downloads/windows-launcher/Install-ItsABoardGameLauncher.ps1`
-
-What it does:
-1. Downloads both launcher zip parts.
-2. Rebuilds the launcher zip automatically.
-3. Extracts launcher into `%LOCALAPPDATA%\\ItsABoardGameLauncher`.
-4. Creates a desktop shortcut.
-5. Opens the launcher.
-
-## Steam-like flow in this launcher
-1. Open launcher.
-2. Click `Install / Update Game`.
-3. Launcher downloads the game package listed in `game-manifest.json`.
-4. Click `Play` to launch the installed game.
-
-The launcher uses this default manifest:
-- `downloads/windows-launcher/game-manifest.json`
-
-You can override URLs with environment variables:
-- `LAUNCHER_MANIFEST_URL`
-- `LAUNCHER_DOWNLOAD_URL`
-- `LAUNCHER_GAME_EXECUTABLE_RELATIVE`
+- Launcher development is postponed.
+- Launcher packaging and distribution docs will return when the desktop release resumes.

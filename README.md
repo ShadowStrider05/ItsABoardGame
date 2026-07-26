@@ -1,13 +1,17 @@
 # ItsABoardGame
 
-Cross-platform digital board game project with a custom launcher and an eventual Steam release path.
+Browser-first digital board game project with a launcher planned for a later release.
+
+## Play Now (Browser)
+
+- Live build: https://shadowstrider05.github.io/ItsABoardGame/
 
 ## Tech Baseline
 
 - Game client: React + Vite + TypeScript
 - Shared game model: TypeScript packages
 - Backend: Firebase (Auth, Firestore, Cloud Functions)
-- Launcher: Electron + TypeScript
+- Launcher: Electron + TypeScript (planned)
 
 ## Quick Start
 
