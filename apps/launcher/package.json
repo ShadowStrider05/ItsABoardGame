@@ -1,0 +1,19 @@
+{
+  "name": "@itsaboardgame/launcher",
+  "version": "0.1.0",
+  "private": true,
+  "main": "dist/main.js",
+  "scripts": {
+    "dev": "tsc --watch",
+    "build": "tsc -p tsconfig.json",
+    "lint": "echo \"No linter configured yet for launcher\"",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "electron": "^31.7.5"
+  },
+  "devDependencies": {
+    "@types/node": "^22.8.7",
+    "typescript": "^5.6.3"
+  }
+}

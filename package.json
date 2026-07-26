@@ -1,0 +1,24 @@
+{
+  "name": "its-a-board-game",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Digital board game with custom launcher and Steam release path.",
+  "workspaces": [
+    "apps/*",
+    "packages/*",
+    "firebase/functions"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "dev:game": "npm run dev --workspace @itsaboardgame/game",
+    "build:game": "npm run build --workspace @itsaboardgame/game",
+    "dev:launcher": "npm run dev --workspace @itsaboardgame/launcher",
+    "build:launcher": "npm run build --workspace @itsaboardgame/launcher",
+    "build": "npm run build:game && npm run build:launcher",
+    "lint": "npm run lint --workspace @itsaboardgame/game && npm run lint --workspace @itsaboardgame/launcher && npm run lint --workspace @itsaboardgame/firebase-functions",
+    "typecheck": "npm run typecheck --workspace @itsaboardgame/game && npm run typecheck --workspace @itsaboardgame/launcher && npm run typecheck --workspace @itsaboardgame/firebase-functions",
+    "test": "echo \"No tests yet\""
+  }
+}

@@ -1,0 +1,26 @@
+name: Release Launcher
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build-launcher:
+    runs-on: windows-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install deps
+        run: npm ci
+
+      - name: Build launcher
+        run: npm run build:launcher
+
+      - name: TODO
+        run: echo "Add code-signing and update-manifest pipeline here"

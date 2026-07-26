@@ -1,0 +1,30 @@
+node_modules/
+dist/
+build/
+coverage/
+.turbo/
+.vite/
+.DS_Store
+Thumbs.db
+
+# Environment
+.env
+.env.*
+!.env.example
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Firebase
+.firebase/
+firebase-debug.log
+
+# Electron artifacts
+apps/launcher/out/
+apps/launcher/release/
+
+# IDE
+.vscode/*.log
