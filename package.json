@@ -20,5 +20,8 @@
     "lint": "npm run lint --workspace @itsaboardgame/game && npm run lint --workspace @itsaboardgame/launcher && npm run lint --workspace @itsaboardgame/firebase-functions",
     "typecheck": "npm run typecheck --workspace @itsaboardgame/game && npm run typecheck --workspace @itsaboardgame/launcher && npm run typecheck --workspace @itsaboardgame/firebase-functions",
     "test": "echo \"No tests yet\""
+  },
+  "devDependencies": {
+    "@electron/packager": "^20.0.4"
   }
 }

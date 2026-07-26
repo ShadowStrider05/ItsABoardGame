@@ -10,7 +10,12 @@
     "lint": "echo \"No linter configured yet for launcher\"",
     "typecheck": "tsc --noEmit"
   },
+  "dependencies": {
+    "adm-zip": "^0.5.16"
+  },
   "devDependencies": {
+    "@electron/get": "^2.0.3",
+    "@types/adm-zip": "^0.5.7",
     "@types/node": "^22.8.7",
     "electron": "31.7.5",
     "electron-builder": "^24.13.3",
