@@ -25,6 +25,7 @@ type ManifestResponse = {
   version: string;
   downloadUrl?: string;
   executableRelativePath?: string;
+  launchEntryType?: "exe" | "html";
 };
 
 let launcherWindow: BrowserWindow | null = null;
@@ -285,6 +286,7 @@ async function installOrUpdateGame(): Promise<LauncherState> {
       targetVersion = manifest.version;
       packageUrl = manifest.downloadUrl ?? packageUrl;
       executableRelativePath = manifest.executableRelativePath ?? executableRelativePath;
+      launchEntryType = manifest.launchEntryType ?? launchEntryType;
     }
 
     if (!packageUrl) {
@@ -335,7 +337,12 @@ async function installOrUpdateGame(): Promise<LauncherState> {
         launchEntryType = "html";
       }
     } else {
-      launchEntryType = "exe";
+      const extension = path.extname(candidateExecutable).toLowerCase();
+      if (extension === ".html" || extension === ".htm") {
+        launchEntryType = "html";
+      } else {
+        launchEntryType = "exe";
+      }
     }
 
     launcherState.localVersion = targetVersion;
@@ -629,7 +636,10 @@ function registerIpcHandlers(): void {
 
     const gameExecutable = process.env.LAUNCHER_GAME_EXECUTABLE;
     if (gameExecutable && existsSync(gameExecutable)) {
-      spawn(gameExecutable, [], { detached: true, stdio: "ignore" }).unref();
+      const launchError = await shell.openPath(gameExecutable);
+      if (launchError) {
+        return { ok: false, message: `Launch failed: ${launchError}` };
+      }
       launcherWindow?.minimize();
       return { ok: true, message: "Launching game executable." };
     }
@@ -637,7 +647,10 @@ function registerIpcHandlers(): void {
     const installedEntry = path.join(getInstallDir(), launcherState.executableRelativePath);
     if (existsSync(installedEntry)) {
       if (launcherState.launchEntryType === "exe") {
-        spawn(installedEntry, [], { detached: true, stdio: "ignore", cwd: path.dirname(installedEntry) }).unref();
+        const launchError = await shell.openPath(installedEntry);
+        if (launchError) {
+          return { ok: false, message: `Launch failed: ${launchError}` };
+        }
         launcherWindow?.minimize();
         return { ok: true, message: "Launching installed game executable." };
       }
