@@ -8,6 +8,20 @@ GitHub blocks single files over 100MB in regular repositories, so the launcher z
 3. Extract `ItsABoardGame-Launcher-Windows-Preview.zip`.
 4. Run `ItsABoardGameLauncher.exe`.
 
+## One-link website install
+If you want one link on your website, use this file:
+- `Install-ItsABoardGameLauncher.ps1`
+
+Direct link:
+- `https://raw.githubusercontent.com/ShadowStrider05/ItsABoardGame/main/downloads/windows-launcher/Install-ItsABoardGameLauncher.ps1`
+
+What it does:
+1. Downloads both launcher zip parts.
+2. Rebuilds the launcher zip automatically.
+3. Extracts launcher into `%LOCALAPPDATA%\\ItsABoardGameLauncher`.
+4. Creates a desktop shortcut.
+5. Opens the launcher.
+
 ## Steam-like flow in this launcher
 1. Open launcher.
 2. Click `Install / Update Game`.

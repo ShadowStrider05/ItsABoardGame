@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ItsABoardGame Launcher Download</title>
+    <style>
+      :root {
+        --bg-1: #0f1d29;
+        --bg-2: #1e3a4f;
+        --accent: #f1b454;
+        --text: #f6efe4;
+        --muted: #cad5df;
+      }
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        min-height: 100vh;
+        display: grid;
+        place-items: center;
+        font-family: "Trebuchet MS", "Segoe UI", sans-serif;
+        color: var(--text);
+        background:
+          radial-gradient(90rem 35rem at -10% -20%, #315b79 0%, transparent 60%),
+          radial-gradient(80rem 40rem at 110% 120%, #224b32 0%, transparent 60%),
+          linear-gradient(160deg, var(--bg-1), var(--bg-2));
+      }
+      .card {
+        width: min(720px, 92vw);
+        background: rgba(5, 11, 16, 0.6);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 18px;
+        padding: 28px;
+      }
+      h1 { margin: 0 0 8px; font-size: clamp(1.8rem, 3.8vw, 2.6rem); }
+      p { margin: 0 0 14px; color: var(--muted); line-height: 1.5; }
+      .cta {
+        display: inline-block;
+        margin-top: 8px;
+        padding: 14px 22px;
+        border-radius: 999px;
+        background: var(--accent);
+        color: #1d1202;
+        text-decoration: none;
+        font-weight: 800;
+      }
+      .steps {
+        margin-top: 18px;
+        padding: 14px;
+        border-radius: 12px;
+        background: rgba(255, 255, 255, 0.06);
+      }
+      .steps ol { margin: 0; padding-left: 20px; }
+      .steps li { margin: 8px 0; }
+    </style>
+  </head>
+  <body>
+    <main class="card">
+      <h1>Install ItsABoardGame Launcher</h1>
+      <p>One download link. Install the launcher first, then click Install / Update Game inside the launcher, then click Play.</p>
+      <a class="cta" href="https://raw.githubusercontent.com/ShadowStrider05/ItsABoardGame/main/downloads/windows-launcher/Install-ItsABoardGameLauncher.ps1">Download Launcher Installer (Windows)</a>
+      <section class="steps">
+        <ol>
+          <li>Download and run the installer script.</li>
+          <li>Launcher opens and installs on your PC.</li>
+          <li>In launcher, click Install / Update Game.</li>
+          <li>Click Play to launch.</li>
+        </ol>
+      </section>
+    </main>
+  </body>
+</html>
