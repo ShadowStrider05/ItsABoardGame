@@ -10,9 +10,12 @@ GitHub blocks single files over 100MB in regular repositories, so the launcher z
 
 ## One-link website install
 If you want one link on your website, use this file:
-- `Install-ItsABoardGameLauncher.ps1`
+- `Install-ItsABoardGameLauncher.cmd` (recommended)
 
 Direct link:
+- `https://raw.githubusercontent.com/ShadowStrider05/ItsABoardGame/main/downloads/windows-launcher/Install-ItsABoardGameLauncher.cmd`
+
+PowerShell fallback link:
 - `https://raw.githubusercontent.com/ShadowStrider05/ItsABoardGame/main/downloads/windows-launcher/Install-ItsABoardGameLauncher.ps1`
 
 What it does:
