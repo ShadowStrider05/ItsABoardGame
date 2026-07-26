@@ -6,14 +6,35 @@
   "scripts": {
     "dev": "tsc --watch",
     "build": "tsc -p tsconfig.json",
+    "package:win": "npm run build && electron-builder --win nsis --x64",
     "lint": "echo \"No linter configured yet for launcher\"",
     "typecheck": "tsc --noEmit"
   },
-  "dependencies": {
-    "electron": "^31.7.5"
-  },
   "devDependencies": {
     "@types/node": "^22.8.7",
+    "electron": "31.7.5",
+    "electron-builder": "^24.13.3",
     "typescript": "^5.6.3"
+  },
+  "build": {
+    "appId": "com.wildhavengames.itsaboardgame.launcher",
+    "productName": "ItsABoardGameLauncher",
+    "files": [
+      "dist/**/*",
+      "package.json"
+    ],
+    "directories": {
+      "output": "release-builder"
+    },
+    "win": {
+      "target": [
+        "nsis"
+      ]
+    },
+    "nsis": {
+      "oneClick": false,
+      "perMachine": false,
+      "allowToChangeInstallationDirectory": true
+    }
   }
 }
