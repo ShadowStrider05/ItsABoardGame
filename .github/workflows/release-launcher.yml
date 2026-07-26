@@ -2,10 +2,17 @@ name: Release Launcher
 
 on:
   workflow_dispatch:
+    inputs:
+      version:
+        description: "Launcher version (example: 0.1.1)"
+        required: true
+        default: "0.1.0"
 
 jobs:
   build-launcher:
     runs-on: windows-latest
+    permissions:
+      contents: write
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -19,8 +26,24 @@ jobs:
       - name: Install deps
         run: npm ci
 
-      - name: Build launcher
-        run: npm run build:launcher
+      - name: Build Windows installer
+        run: npm run package:win --workspace @itsaboardgame/launcher
 
-      - name: TODO
-        run: echo "Add code-signing and update-manifest pipeline here"
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: launcher-win-installer
+          path: |
+            apps/launcher/release-builder/*.exe
+            apps/launcher/release-builder/*.yml
+            apps/launcher/release-builder/*.blockmap
+
+      - name: Publish GitHub release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: launcher-v${{ github.event.inputs.version }}
+          name: ItsABoardGame Launcher v${{ github.event.inputs.version }}
+          files: |
+            apps/launcher/release-builder/*.exe
+            apps/launcher/release-builder/*.yml
+            apps/launcher/release-builder/*.blockmap

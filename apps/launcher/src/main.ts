@@ -456,6 +456,8 @@ function createLauncherHtml(): string {
     </main>
 
     <script>
+      const api = window.launcherApi || {};
+
       const el = {
         accountName: document.getElementById("account-name"),
         saveAccount: document.getElementById("save-account"),
@@ -467,8 +469,15 @@ function createLauncherHtml(): string {
         installStatus: document.getElementById("install-status")
       };
 
+      function apiMethod(name) {
+        if (typeof api[name] !== "function") {
+          throw new Error("Launcher is out of date. Reinstall the latest launcher build.");
+        }
+        return api[name].bind(api);
+      }
+
       async function refresh() {
-        const state = await window.launcherApi.getState();
+        const state = await apiMethod("getState")();
         el.accountName.value = state.accountName || "";
         el.playGame.disabled = !state.canPlay || state.isDownloading;
         el.downloadGame.disabled = state.isDownloading;
@@ -480,32 +489,65 @@ function createLauncherHtml(): string {
       }
 
       el.saveAccount.addEventListener("click", async () => {
-        await window.launcherApi.saveAccount(el.accountName.value || "");
-        await refresh();
+        try {
+          await apiMethod("saveAccount")(el.accountName.value || "");
+          await refresh();
+        } catch (error) {
+          alert(error instanceof Error ? error.message : "Failed to save profile.");
+        }
       });
 
       el.checkUpdates.addEventListener("click", async () => {
-        await window.launcherApi.checkUpdates();
-        await refresh();
+        try {
+          el.installStatus.textContent = "Checking for updates...";
+          await apiMethod("checkUpdates")();
+          await refresh();
+        } catch (error) {
+          alert(error instanceof Error ? error.message : "Failed to check updates.");
+        }
       });
 
       el.downloadGame.addEventListener("click", async () => {
-        await window.launcherApi.installGame();
-        await refresh();
+        el.installStatus.textContent = "Starting install...";
+        let pollId = null;
+        try {
+          pollId = setInterval(() => {
+            refresh().catch(() => {});
+          }, 1000);
+          await apiMethod("installGame")();
+          await refresh();
+        } catch (error) {
+          alert(error instanceof Error ? error.message : "Install failed.");
+          await refresh();
+        } finally {
+          if (pollId) {
+            clearInterval(pollId);
+          }
+        }
       });
 
       el.playGame.addEventListener("click", async () => {
-        const result = await window.launcherApi.launchGame();
-        if (!result.ok) {
-          alert(result.message);
+        try {
+          const result = await apiMethod("launchGame")();
+          if (!result.ok) {
+            alert(result.message);
+          }
+        } catch (error) {
+          alert(error instanceof Error ? error.message : "Failed to launch game.");
         }
       });
 
       el.openPatchNotes.addEventListener("click", async () => {
-        await window.launcherApi.openPatchNotes();
+        try {
+          await apiMethod("openPatchNotes")();
+        } catch (error) {
+          alert(error instanceof Error ? error.message : "Failed to open patch notes.");
+        }
       });
 
-      refresh();
+      refresh().catch((error) => {
+        el.installStatus.textContent = error instanceof Error ? error.message : "Launcher failed to initialize.";
+      });
     </script>
   </body>
 </html>

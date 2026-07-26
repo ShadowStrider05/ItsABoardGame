@@ -10,15 +10,18 @@ GitHub blocks single files over 100MB in regular repositories, so the launcher z
 
 ## One-link website install
 If you want one link on your website, use this file:
-- `ItsABoardGame-Launcher-Installer.zip` (recommended)
+- `ItsABoardGameLauncher-Setup-0.1.0.exe` (recommended)
 
 Direct link:
-- `https://raw.githubusercontent.com/ShadowStrider05/ItsABoardGame/main/downloads/windows-launcher/ItsABoardGame-Launcher-Installer.zip`
+- `https://raw.githubusercontent.com/ShadowStrider05/ItsABoardGame/main/downloads/windows-launcher/ItsABoardGameLauncher-Setup-0.1.0.exe`
 
 Why this is the default:
-- GitHub raw links can block direct `.cmd` downloads.
-- The installer zip reliably downloads from one link.
-- Inside zip, run `Install-ItsABoardGameLauncher.cmd`.
+- One click install experience.
+- No PowerShell execution-policy issues.
+- Installs directly like a normal game launcher.
+
+Fallback installer bundle link:
+- `https://raw.githubusercontent.com/ShadowStrider05/ItsABoardGame/main/downloads/windows-launcher/ItsABoardGame-Launcher-Installer.zip`
 
 PowerShell fallback link:
 - `https://raw.githubusercontent.com/ShadowStrider05/ItsABoardGame/main/downloads/windows-launcher/Install-ItsABoardGameLauncher.ps1`
